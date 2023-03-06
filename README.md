@@ -15,3 +15,18 @@ The proposed system is to build a customized application which acts as a voice a
 
 For more detials, please check my blog:
 https://visionandroidapp.blogspot.com/
+
+Home page
+![WhatsApp Image 2023-03-06 at 10 27 41 PM](https://user-images.githubusercontent.com/54105823/223183687-811c6653-801c-4699-a7ee-44f0f323a6d2.jpeg)
+
+Messaging
+![WhatsApp Image 2023-03-06 at 10 27 41 PM (1)](https://user-images.githubusercontent.com/54105823/223183784-6a8c480a-d271-43b0-8bec-7be9c4d15a62.jpeg)
+
+Call
+![WhatsApp Image 2023-03-06 at 10 27 40 PM (1)](https://user-images.githubusercontent.com/54105823/223183866-71040bd6-62ff-4ce4-9c25-43eb9b5d90d9.jpeg)
+
+Battery
+
+![WhatsApp Image 2023-03-06 at 10 27 40 PM](https://user-images.githubusercontent.com/54105823/223183928-d9e172e5-1f6d-48a4-a988-fea373ae8fc5.jpeg)
+
+
