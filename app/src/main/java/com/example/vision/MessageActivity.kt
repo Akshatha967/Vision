@@ -63,14 +63,19 @@ class MessageActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         sendMsg.setOnClickListener {
             val sms: SmsManager = SmsManager.getDefault()
-            sms.sendTextMessage(
-                editTextPhone.text.toString(),
-                "ME",
-                editTextTextMultiLine.text.toString(),
-                null,
-                null
-            )
-            tts?.speak("Message sent successfully", TextToSpeech.QUEUE_FLUSH, null, null)
+            if (editTextPhone.text.toString().isEmpty()) {
+                tts?.speak("Please enter phone number", TextToSpeech.QUEUE_FLUSH, null, null)
+            } else {
+                sms.sendTextMessage(
+                    editTextPhone.text.toString(),
+                    "ME",
+                    editTextTextMultiLine.text.toString(),
+                    null,
+                    null
+                )
+
+                tts?.speak("Message sent successfully", TextToSpeech.QUEUE_FLUSH, null, null)
+                    }
         }
     }
 
@@ -156,7 +161,7 @@ class MessageActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             Log.d(TAG, "SUCCESS")
             tts!!.language = Locale.US
             tts?.speak(
-                "Messaging box opened.",
+                "Messaging box opened, Click in the middle for message box click bottom left for phone number click bottom right to send the message ",
                 TextToSpeech.QUEUE_FLUSH, null, null
             )
         }

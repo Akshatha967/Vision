@@ -2,6 +2,7 @@ package com.example.vision
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,7 +11,9 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.RequiresApi
@@ -29,6 +32,7 @@ class PhoneActivity : AppCompatActivity(), View.OnClickListener,
 
     private lateinit var phoneNum: EditText
 
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,14 @@ class PhoneActivity : AppCompatActivity(), View.OnClickListener,
 
         tts = TextToSpeech(this, this)
 
+        fun View.hideKeyboard() {
+            val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+        phoneNum.setOnClickListener {
+
+            it.hideKeyboard()
+        }
         imageView2.setOnClickListener {
             tts?.speak(
                 "Please speak recipient's phone number",
@@ -47,6 +59,7 @@ class PhoneActivity : AppCompatActivity(), View.OnClickListener,
             Thread.sleep(2000)
             speakPhone()
         }
+
 
         val btn1: Button = findViewById(R.id.btn1)
         val btn2: Button = findViewById(R.id.btn2)
@@ -167,7 +180,7 @@ class PhoneActivity : AppCompatActivity(), View.OnClickListener,
         if (status == TextToSpeech.SUCCESS) {
             tts!!.language = Locale.US
             tts?.speak(
-                "Phone manager opened.",
+                "Phone manager opened. Click top left to speak phone number click bottom middle button for call click anywhere in the middle for phone number entry on long press",
                 TextToSpeech.QUEUE_FLUSH, null, null
             )
         }
@@ -220,6 +233,8 @@ class PhoneActivity : AppCompatActivity(), View.OnClickListener,
             e.message?.let { Log.e("Phone", it) }
         }
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
